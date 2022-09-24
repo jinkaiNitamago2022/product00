@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Sample",
+  "version": "0.0.0",
+  "description": "initial test",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/content.js"
+      ]
+    }
+  ]
+}
