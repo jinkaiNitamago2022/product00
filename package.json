@@ -1,0 +1,20 @@
+{
+  "name": "product00",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jinkaiNitamago2022/product00.git"
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/jinkaiNitamago2022/product00/issues"
+  },
+  "homepage": "https://github.com/jinkaiNitamago2022/product00#readme"
+}
