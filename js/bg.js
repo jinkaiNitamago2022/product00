@@ -11,7 +11,9 @@ chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
 async function updateTab(tab, origin) {
     var origin = "https://github.com"  // origin は仮
     var rawCertInfo = await (await getRawCertInfo(origin)).json();
-    console.log(rawCertInfo);
+    var [commonName, organization] = [rawCertInfo.message.subject.CN, rawCertInfo.message.subject.O];
+    console.log("commonName: " + commonName);
+    console.log("Organization: " + organization);
 }
 
 async function getRawCertInfo(origin) {
