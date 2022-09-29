@@ -10,5 +10,6 @@
     "tab"
   ],
   "host_permissions": [
+    "https://jinkai-nitamago-cert.netlify.app/.netlify/functions/getcertinfo?q=*"
   ]
 }

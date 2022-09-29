@@ -1,4 +1,4 @@
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
     if ('status' in changeInfo && changeInfo['status'] === 'loading') {
         updateTab(tab);
     }
@@ -8,6 +8,16 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     }
 });
 
-function updateTab(tab) {
-    console.log("fired");
+async function updateTab(tab, origin) {
+    var origin = "https://github.com"  // origin は仮
+    var rawCertInfo = await (await getRawCertInfo(origin)).json();
+    console.log(rawCertInfo);
+}
+
+async function getRawCertInfo(origin) {
+    var url = "https://jinkai-nitamago-cert.netlify.app/.netlify/functions/getcertinfo";
+    var data = {
+        "q": origin
+    };
+    return await fetch(url + "?" + new URLSearchParams(data));
 }
