@@ -10,16 +10,21 @@ chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
 
 async function updateTab(tab, origin) {
     var origin = "https://github.com"  // origin は仮
-    var rawCertInfo = await (await getRawCertInfo(origin)).json();
-    var [commonName, organization] = [rawCertInfo.message.subject.CN, rawCertInfo.message.subject.O];
+    var [commonName, organization] = await getCertInfo(
+        origin,
+        async (res) => {
+            var j = await res.json();
+            return [j.message.subject.CN, j.message.subject.O];
+        }
+    )
     console.log("commonName: " + commonName);
     console.log("Organization: " + organization);
 }
 
-async function getRawCertInfo(origin) {
+async function getCertInfo(origin="", callback=async() => {}) {
     var url = "https://jinkai-nitamago-cert.netlify.app/.netlify/functions/getcertinfo";
     var data = {
         "q": origin
     };
-    return await fetch(url + "?" + new URLSearchParams(data));
+    return await callback(await fetch(url + "?" + new URLSearchParams(data)));
 }
