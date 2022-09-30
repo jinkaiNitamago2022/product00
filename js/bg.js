@@ -8,23 +8,30 @@ chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
     }
 });
 
-async function updateTab(tab, origin) {
-    var origin = "https://github.com"  // origin は仮
+async function updateTab(tab, url) {
+    var url = 'https://github.com';
     var [commonName, organization] = await getCertInfo(
-        origin,
+        url,
         async (res) => {
             var j = await res.json();
             return [j.message.subject.CN, j.message.subject.O];
         }
     )
-    console.log("commonName: " + commonName);
-    console.log("Organization: " + organization);
+    console.log('commonName: ' + commonName);
+    console.log('Organization: ' + organization);
 }
 
-async function getCertInfo(origin="", callback=async() => {}) {
-    var url = "https://jinkai-nitamago-cert.netlify.app/.netlify/functions/getcertinfo";
+async function getCertInfo(url="", callback=async() => {}) {
+    // var scheme = getScheme(url); // 想定
+    // if (scheme != 'https') {
+    //     return ['', ''];
+    // }
+    // var domain = getDomain(url);  // 想定
+    var domain = 'github.com';  // domain は仮
+
+    var api = 'https://jinkai-nitamago-cert.netlify.app/.netlify/functions/getcertinfo';
     var data = {
-        "q": origin
+        'q': domain
     };
-    return await callback(await fetch(url + "?" + new URLSearchParams(data)));
+    return await callback(await fetch(api + '?' + new URLSearchParams(data)));
 }
