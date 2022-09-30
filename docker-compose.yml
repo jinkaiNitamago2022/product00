@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  app:
+    image: node:18-bullseye-slim
+    container_name: jinkai-nitamago-node
+    working_dir: /opt/app
+    tty: true
+    volumes:
+      - ./:/opt/app
