@@ -3,14 +3,13 @@
   "name": "Sample",
   "version": "0.0.0",
   "description": "initial test",
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "js/content.js"
-      ]
-    }
+  "background": {
+    "service_worker": "js/bg.js"
+  },
+  "permissions": [
+    "tab"
+  ],
+  "host_permissions": [
+    "https://jinkai-nitamago-cert.netlify.app/.netlify/functions/getcertinfo?q=*"
   ]
 }
