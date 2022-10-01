@@ -5,19 +5,17 @@ chrome.tabs.onActivated.addListener((activateInfo) => {
     currentTabId = activateInfo.tabId;
 })
 
-chrome.tabs.onUpdated.addListener(async(tabId, changeInfo, tab) => {
-    if (tabId != currentTabId) {
-        return;
-    }
-
-    if ('status' in changeInfo && changeInfo['status'] === 'loading') {
-        updateTab(tab);
-    }
-
-    if ('title' in changeInfo && changeInfo['title'] === 'Privacy error') {
-        updateTab(tab);
-    }
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    getCertInfoFromCurrentTab(request).then(sendResponse);
+    return true;
 });
+
+async function getCertInfoFromCurrentTab() {
+    let queryOptions = { active: true, currentWindow: true };
+    let [tab] = await chrome.tabs.query(queryOptions);
+    await updateTab(tab);
+    return data[currentTabId];
+}
 
 function getCurrentTabUrl(tab) {
     return tab.url;
@@ -40,11 +38,11 @@ async function updateTab(tab) {
     console.log('Organization: ' + organization);
 }
 
-function breakUpUrl(url="") {
+function breakUpUrl(url = "") {
     return url.match('(.+?)://([^/]+)(.*)').slice(1);
 }
 
-async function getCertInfo(url="", callback=async() => {}) {
+async function getCertInfo(url = "", callback = async () => { }) {
     var [scheme, domain, _] = breakUpUrl(url);
     if (scheme != 'https') {
         return;
@@ -56,4 +54,3 @@ async function getCertInfo(url="", callback=async() => {}) {
     };
     return await callback(await fetch(api + '?' + new URLSearchParams(data)));
 }
-

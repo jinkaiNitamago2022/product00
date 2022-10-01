@@ -3,12 +3,9 @@ addElements();
 /**
  * ページを読み込んだ時に発行先の組織？をページ左上部に表示させる
  */
-/* WARNING: おそらくBootstrapのCSS関係で一部のサイトにてnavbarのレイアウトが崩れる */
 function addElements() {
     if (!addButtons('Hello!')) {
-        setTimeout(addElements, 500); // retry after 500 milliseconds
-    } else {
-        removeButtonsAfterFewSeconds(5);
+        setTimeout(addElements, 500); // 追加できなかったら0.5秒に再度試す
     }
 }
 
@@ -18,10 +15,22 @@ function addElements() {
  * @returns {boolean} ボタン追加成功 or 失敗
  */
 function addButtons(printText) {
-    if (!($('body').length)) return false; // the html was not ready yet
+    if (!($('body').length)) return false; // htmlのbodyがなければ追加をやめる
 
-    let btn = $('<button>', { type: 'button', id: 'printOrg', class: 'btn btn-success', text: printText });
-    $('body').prepend(btn);
+    let request = {
+        type: "getCommonNameAndOrganization",
+        value: ""
+    };
+    chrome.runtime.sendMessage(request, (receive) => {
+        console.log(receive)
+        let btn = $('<button>', { type: 'button', id: 'printOrg', text: receive.commonName });
+        $('body').prepend(btn);
+
+        // 5秒後に追加したボタンを削除する
+        if (!removeButtonsAfterFewSeconds(60)) {
+            setTimeout(function () { removeButtonsAfterFewSeconds(5); }, 500); // 削除できなかったら0.5秒に再度試す
+        }
+    });
 
     return true;
 }
@@ -35,7 +44,9 @@ function removeButtonsAfterFewSeconds(seconds) {
     if (!($('#printOrg').length)) {
         console.log("The element does not exist.")
         return false;
-    }
+    } // 追加されたボタンがない場合
+
+    // 指定された秒数だけ待ったあと，フェードアウトしながら削除する
     window.setTimeout(() => {
         $('#printOrg').fadeOut(1000, function () {
             $(this).remove();
