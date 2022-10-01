@@ -19,9 +19,11 @@
     }
   ],
   "background": {
-    "service_worker": "js/bg.js"
+    "service_worker": "js/bg.js",
+    "type": "module"
   },
   "permissions": [
+    "storage",
     "tabs"
   ],
   "host_permissions": [
