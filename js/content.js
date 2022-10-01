@@ -4,17 +4,16 @@ addElements();
  * ページを読み込んだ時に発行先の組織？をページ左上部に表示させる
  */
 function addElements() {
-    if (!addButtons('Hello!')) {
+    if (!addButtons()) {
         setTimeout(addElements, 500); // 追加できなかったら0.5秒に再度試す
     }
 }
 
 /**
  * ページの左上部に指定されたテキストが表示されるボタンを追加する
- * @param {String} printText ボタンに表示するテキスト
  * @returns {boolean} ボタン追加成功 or 失敗
  */
-function addButtons(printText) {
+function addButtons() {
     if (!($('body').length)) return false; // htmlのbodyがなければ追加をやめる
 
     let request = {
@@ -23,11 +22,21 @@ function addButtons(printText) {
     };
     chrome.runtime.sendMessage(request, (receive) => {
         console.log(receive)
-        let btn = $('<button>', { type: 'button', id: 'printOrg', text: receive.commonName });
+        if (!receive.print_flag) { // ドメインが同じなら何もせずに正常終了
+            return true;
+        }
+
+        // organizationが不明なら簡易的な警告を出す
+        let printText = receive.organization;
+        if (receive.organization == "unknown") {
+            printText = "組織が不明です。"
+        }
+
+        let btn = $('<button>', { type: 'button', id: 'printOrg', text: printText });
         $('body').prepend(btn);
 
         // 5秒後に追加したボタンを削除する
-        if (!removeButtonsAfterFewSeconds(60)) {
+        if (!removeButtonsAfterFewSeconds(5)) {
             setTimeout(function () { removeButtonsAfterFewSeconds(5); }, 500); // 削除できなかったら0.5秒に再度試す
         }
     });
