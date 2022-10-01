@@ -1,5 +1,5 @@
 import * as certInfo from './certificate-Info.js';
-import * as storage from './storage.js';
+// import * as storage from './storage.js';
 import * as url from './url.js';
 
 export async function getCertInfoFromCurrentTab() {
@@ -34,8 +34,8 @@ async function updateTab(tab) {
 
     chrome.storage.session.set(
         {
-            'commonName': commonName,
-            'organization': organization
+            'commonName': typeof commonName !== 'undefined' ? commonName : 'Unknown',
+            'organization': typeof organization !== 'undefined' ? organization : 'Unknown'
             // 後に脅威情報リンクも追記する
         }
     );
@@ -44,6 +44,6 @@ async function updateTab(tab) {
     console.log('Organization: ' + organization);
 
     // ↓ のような感じで、storageCache に保存した情報を取得する
-    // storage.assignStorageCache(storageCache);
+    // await storage.assignStorageCache(storageCache);
     // console.log(storageCache);
 }
