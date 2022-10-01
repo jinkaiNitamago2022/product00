@@ -8,7 +8,8 @@
     "default_popup": "contents/popup.html"
   },
   "background": {
-    "service_worker": "js/bg.js"
+    "service_worker": "js/bg.js",
+    "type": "module"
   },
   "permissions": [
     "storage",
