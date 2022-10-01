@@ -3,10 +3,15 @@
   "name": "Sample",
   "version": "0.0.0",
   "description": "initial test",
+  "action": {
+    "default_icon": "icons/sample00.png",
+    "default_popup": "contents/popup.html"
+  },
   "background": {
     "service_worker": "js/bg.js"
   },
   "permissions": [
+    "storage",
     "tabs"
   ],
   "host_permissions": [
