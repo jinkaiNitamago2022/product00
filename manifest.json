@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "description": "initial test",
   "background": {
-    "service_worker": "js/bg.js"
+    "service_worker": "js/bg.js",
+    "type": "module"
   },
   "permissions": [
+    "storage",
     "tabs"
   ],
   "host_permissions": [
