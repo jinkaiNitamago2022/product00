@@ -1,10 +1,14 @@
-addElements();
+chrome.runtime.onMessage.addListener((request, sender, callback) => {
+    console.log(request.value);
+    addElements(request.value);
+    return true;
+});
 
 /**
  * ページを読み込んだ時に発行先の組織？をページ左上部に表示させる
  */
-function addElements() {
-    if (!addButtons()) {
+function addElements(certInfo) {
+    if (!addButtons(certInfo)) {
         setTimeout(addElements, 500); // 追加できなかったら0.5秒に再度試す
     }
 }
@@ -13,33 +17,29 @@ function addElements() {
  * ページの左上部に指定されたテキストが表示されるボタンを追加する
  * @returns {boolean} ボタン追加成功 or 失敗
  */
-function addButtons() {
+function addButtons(certInfo) {
     if (!($('body').length)) return false; // htmlのbodyがなければ追加をやめる
 
-    let request = {
-        type: "getCommonNameAndOrganization",
-        value: ""
-    };
-    chrome.runtime.sendMessage(request, (receive) => {
-        console.log(receive)
-        if (!receive.print_flag) { // ドメインが同じなら何もせずに正常終了
-            return true;
-        }
+    // organizationが不明なら簡易的な警告を出す
+    let printText = certInfo.organization;
+    if (certInfo.organization == "Unknown") {
+        printText = "Unknown Organization"
+    }
 
-        // organizationが不明なら簡易的な警告を出す
-        let printText = receive.organization;
-        if (receive.organization == "unknown") {
-            printText = "組織が不明です。"
-        }
+    // ボタンを生成してページに追加する
+    let btn = $('<button>', { type: 'button', id: 'printOrg', text: printText });
+    $('body').prepend(btn);
 
-        let btn = $('<button>', { type: 'button', id: 'printOrg', text: printText });
-        $('body').prepend(btn);
+    // organizationが不明なら警告っぽく色を変える
+    if (certInfo.organization == "Unknown") {
+        $('#printOrg').css('background-color', 'Red');
+        $('#printOrg').css('border-color', 'Red');
+    }
 
-        // 5秒後に追加したボタンを削除する
-        if (!removeButtonsAfterFewSeconds(5)) {
-            setTimeout(function () { removeButtonsAfterFewSeconds(5); }, 500); // 削除できなかったら0.5秒に再度試す
-        }
-    });
+    // 5秒後に追加したボタンを削除する
+    if (!removeButtonsAfterFewSeconds(5)) {
+        setTimeout(function () { removeButtonsAfterFewSeconds(5); }, 500); // 削除できなかったら0.5秒に再度試す
+    }
 
     return true;
 }
