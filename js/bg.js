@@ -1,12 +1,7 @@
 import * as content from "./pkg/content.js";
 
-// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-//     content.getCertInfoFromCurrentTab(request).then(sendResponse);
-//     return true;
-// });
-
-chrome.tabs.onActivated.addListener(async (activeInfo) => {
-    chrome.tabs.query({}, async (tabs) => {
+chrome.tabs.onActivated.addListener(async(activeInfo) => {
+    chrome.tabs.query({}, async(tabs) => {
         for (let i = 0; i < tabs.length; i++) {
             if (tabs[i].id === activeInfo.tabId) {
                 await content.updateTab(tabs[i]);
@@ -16,7 +11,7 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
     })
 });
 
-chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+chrome.tabs.onUpdated.addListener(async(tabId, changeInfo, tab) => {
     if (!tab.highlighted) {
         return;
     }

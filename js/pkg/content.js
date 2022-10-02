@@ -2,24 +2,6 @@ import * as certInfo from './certificate-Info.js';
 import * as storage from './storage.js';
 import * as url from './url.js';
 
-// export async function getCertInfoFromCurrentTab() {
-//     let storageCache = {};
-//     await storage.assignStorageCache(storageCache);
-
-//     let queryOptions = { active: true, currentWindow: true };
-//     let [tab] = await chrome.tabs.query(queryOptions);
-//     await updateTab(tab);
-
-//     let sendCertInfo = {};
-//     await storage.assignStorageCache(sendCertInfo);
-
-//     sendCertInfo.print_flag = true;
-//     if (storageCache.commonName == sendCertInfo.commonName) {
-//         sendCertInfo.print_flag = false;
-//     }
-//     return sendCertInfo;
-// }
-
 export async function updateTab(tab) {
     // 前回取得した証明書情報を保持しておく
     let storageCache = {};
