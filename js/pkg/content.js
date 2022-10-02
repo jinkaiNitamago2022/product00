@@ -47,7 +47,5 @@ export async function updateTab(tab) {
 // どちらがいい、などありましたら教えてください
 async function testGenerateLinks() {
     await storage.assignStorageCache(storageCache);
-    for (let link of links.generateAllLinks(storageCache.tab)) {
-        console.log(link);
-    }
+    (await links.generateAllLinks(storageCache.tab)).map(v => console.log(v))
 }
