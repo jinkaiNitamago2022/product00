@@ -12,7 +12,16 @@ export async function updateTab(tab) {
         url.getCurrentTabUrl(tab),
         async (res) => {
             var j = await res.json();
-            return [j.message.subject.CN, j.message.subject.O];
+            try {
+                return [j.message.subject.CN, j.message.subject.O];
+            } catch (err) {
+                if (err instanceof TypeError) {
+                    console.log("hi");
+                    return [undefined, undefined];
+                } else {
+                    console.log(err);
+                }
+            }
         }
     )
 
@@ -47,6 +56,7 @@ export async function updateTab(tab) {
             })
             .catch((error) => {
                 // エラー処理
+                console.log(error);
             });
     }
 }
