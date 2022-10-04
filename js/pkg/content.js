@@ -56,7 +56,6 @@ export async function updateTab(tab) {
             })
             .catch((error) => {
                 // エラー処理
-                console.log(error);
             });
     }
 }
