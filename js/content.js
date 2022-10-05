@@ -20,6 +20,8 @@ function addElements(certInfo) {
 function addButtons(certInfo) {
     if (!($('body').length)) return false; // htmlのbodyがなければ追加をやめる
 
+    if (($('#printOrg').length)) return true; // すでに存在する場合は追加しない
+
     // organizationが不明なら簡易的な警告を出す
     let printText = certInfo.organization;
     if (certInfo.organization == "Unknown") {
