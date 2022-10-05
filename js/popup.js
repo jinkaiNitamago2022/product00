@@ -1,6 +1,7 @@
 import * as storage from './pkg/storage.js';
 
 const COLOR_THEME = {
+    'disabled': 'gray',
     'danger': 'red',
     'safety': 'rgb(25, 135, 84)'
 };
@@ -11,7 +12,12 @@ document.addEventListener('DOMContentLoaded', async(event) => {
 
     var theme = '';
     document.getElementById('ssl-organization').innerHTML = storageCache.organization;
-    if (storageCache.organization === 'Unknown') {
+    if (typeof storageCache.organization === 'undefined') {
+        theme = 'disabled';
+        storageCache.virusTotalUrlLink = '#';
+        storageCache.virusTotalDomainLink = '#';
+        storageCache.digicertLink = '#';
+    } else if (storageCache.organization === 'Unknown') {
         theme = 'danger';
     } else {
         theme = 'safety';
