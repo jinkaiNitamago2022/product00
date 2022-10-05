@@ -1,6 +1,7 @@
 import * as certInfo from './certificate-Info.js';
 import * as storage from './storage.js';
 import * as url from './url.js';
+import * as links from './links.js';
 
 export async function updateTab(tab) {
     // 前回取得した証明書情報を保持しておく
@@ -25,12 +26,17 @@ export async function updateTab(tab) {
         }
     )
 
+    var [virusTotalUrlLink, virusTotalDomainLink, digicertLink] = await links.generateAllLinks(url.getCurrentTabUrl(tab));
+
     // undefinedが保存できないから"unknown"で置き換えるロジックを追加
     await chrome.storage.session.set(
         {
+            'tab': tab,
             'commonName': typeof commonName !== 'undefined' ? commonName : 'Unknown',
-            'organization': typeof organization !== 'undefined' ? organization : 'Unknown'
-            // 後に脅威情報リンクも追記する
+            'organization': typeof organization !== 'undefined' ? organization : 'Unknown',
+            'virusTotalUrlLink': virusTotalUrlLink,
+            'virusTotalDomainLink': virusTotalDomainLink,
+            'digicertLink': digicertLink
         }
     );
 
