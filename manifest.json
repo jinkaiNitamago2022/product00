@@ -18,8 +18,13 @@
       ]
     }
   ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "action": {
-    "default_icon": "icons/sample00.png",
+    "default_icon": "icons/icon48.png",
     "default_popup": "contents/popup.html"
   },
   "background": {
@@ -32,10 +37,5 @@
   ],
   "host_permissions": [
     "https://jinkai-nitamago-cert.netlify.app/.netlify/functions/getcertinfo?q=*"
-  ],
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  }
+  ]
 }
