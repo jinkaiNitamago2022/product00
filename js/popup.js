@@ -1,4 +1,4 @@
-import * as storage from '../js/pkg/storage.js';
+import * as storage from './pkg/storage.js';
 
 const storageCache = {};
 
