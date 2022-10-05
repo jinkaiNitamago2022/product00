@@ -26,13 +26,17 @@ export async function updateTab(tab) {
         }
     )
 
+    var [virusTotalUrlLink, virusTotalDomainLink, digicertLink] = await links.generateAllLinks(url.getCurrentTabUrl(tab));
+
     // undefinedが保存できないから"unknown"で置き換えるロジックを追加
     await chrome.storage.session.set(
         {
             'tab': tab,
             'commonName': typeof commonName !== 'undefined' ? commonName : 'Unknown',
-            'organization': typeof organization !== 'undefined' ? organization : 'Unknown'
-            // 後に脅威情報リンクも追記する
+            'organization': typeof organization !== 'undefined' ? organization : 'Unknown',
+            'virusTotalUrlLink': virusTotalUrlLink,
+            'virusTotalDomainLink': virusTotalDomainLink,
+            'digicertLink': digicertLink
         }
     );
 
@@ -60,24 +64,4 @@ export async function updateTab(tab) {
                 // エラー処理
             });
     }
-
-    await testGenerateLinks(storageCache);  // リンク生成をテストする
-}
-
-// リンク生成をテストする関数、マージ時消す（import も適宜消す）
-// いまはテストで
-// 1. storage に tab を登録
-// 2. tab から url を取得
-// 3. リンクを生成
-// という流れにしていますが、最終的に storage に登録する情報を tab ではなく、
-// links: {
-//     'virusTotalUrlLink': value,
-//     'virusTotalDomainLink: value,
-//     'digicertLink: value
-// }
-// を登録するかもしれません
-// どちらがいい、などありましたら教えてください
-async function testGenerateLinks(storageCache) {
-    await storage.assignStorageCache(storageCache);
-    (await links.generateAllLinks(storageCache.tab)).map(v => console.log(v))
 }
