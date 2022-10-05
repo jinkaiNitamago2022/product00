@@ -1,8 +1,7 @@
-export async function assignStorageCache(storageCache={}) {
+export async function assignStorageCache(storageCache = {}) {
     await getAllStorageSessionData().then((items) => {
         Object.assign(storageCache, items);
     });
-
     return storageCache;
 };
 
