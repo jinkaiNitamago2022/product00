@@ -9,7 +9,6 @@
         "<all_urls>"
       ],
       "js": [
-        "js/bootstrap.bundle.min.js",
         "js/jquery-3.6.1.min.js",
         "js/content.js"
       ],
