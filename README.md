@@ -1,10 +1,10 @@
-# product00
+# Subliminal CertInfo
 
 SSL 証明書を取得した組織を明示する Chrome 拡張機能
 
 ## 目次
 
-- [product00](#product00)
+- [Subliminal CertInfo](#subliminal-certinfo)
   - [目次](#目次)
   - [背景](#背景)
   - [提案](#提案)
