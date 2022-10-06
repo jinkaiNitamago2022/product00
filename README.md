@@ -22,10 +22,10 @@ SSL 証明書を取得した組織を明示する Chrome 拡張機能
 
 サイトが安全かどうか、または信頼できるかどうかを判断する 1 つの指標として、「HTTPS 通信ができるか」を見ている人がいる。しかし、実はフィッシングサイトでも、HTTPS 通信ができるサイトはかなり多い（参照: 図1）。
 
-<figure>
-  <img src="./img/phishing-https-rate-2021.png" alt="2021 年のフィッシングサイトにおける HTTPS の割合">
-  <figcaption>図1: 2021 年のフィッシングサイトにおける HTTPS の割合（JPCERT 公開データより作成）</figcaption>
-</figure>
+| |
+| :---: |
+| ![2021 年のフィッシングサイトにおける HTTPS の割合](./img/phishing-https-rate-2021.png) |
+| 図1: 2021 年のフィッシングサイトにおける HTTPS の割合（JPCERT 公開データより作成）|
 
 図1 は JPCERT が公開している 2021 年に見つかったフィッシングサイトの HTTP と HTTPS の割合だ。2021 年を通して見つかったフィッシングサイトのうち、80 % 以上のフィッシングサイトで HTTPS 通信ができたことがわかる。このことから、「フィッシングサイトは HTTPS 通信ができないから、HTTPS かどうかを見ていれば安全だろう」という考え方は危険だといえる。
 
@@ -112,23 +112,47 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
       <li><a href="https://github.com/jinkaiNitamago2022/product00/archive/refs/heads/main.zip">main ブランチの zip ファイル</a> をダウンロードする（リンクにアクセスするとダウンロードが始まります）</li>
     </ul>
   </li>
-  <li><a href="chrome://extensions">chrome://extensions</a> にアクセスする（図2）
-    <figure>
-      <img src="" alt="chrome://extensions の画面">
-      <figcaption>図2: chrome://extensions の画面</figcaption>
-    </figure>
+  <li><a href="chrome://extensions">chrome://extensions</a> にアクセスする（図2）<br>
+    <table>
+      <tr align="center">
+        <td>
+          <img src="" alt="chrome://extensions の画面">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          図2: chrome://extensions の画面
+        </td>
+      </tr>
+    </table>
   </li>
   <li>右上の「デベロッパーモード」をオンにする（図3）
-    <figure>
-      <img src="" alt="「デベロッパーモード」のオン・オフを選択する場所">
-      <figcaption>図3: 「デベロッパーモード」のオン・オフを選択する場所</figcaption>
-    </figure>
+    <table>
+      <tr align="center">
+        <td>
+          <img src="" alt="「デベロッパーモード」のオン・オフを選択する場所">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          図3: 「デベロッパーモード」のオン・オフを選択する場所
+        </td>
+      </tr>
+    </table>
   </li>
   <li>「パッケージ化されていない拡張機能を読み込む」を選択する（図4）
-    <figure>
-      <img src="" alt="「パッケージ化されていない拡張機能を読み込む」を選択する場所">
-      <figcaption>図4: 「パッケージ化されていない拡張機能を読み込む」を選択する場所</figcaption>
-    </figure>
+    <table>
+      <tr align="center">
+        <td>
+          <img src="" alt="「パッケージ化されていない拡張機能を読み込む」を選択する場所">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          図4: 「パッケージ化されていない拡張機能を読み込む」を選択する場所
+        </td>
+      </tr>
+    </table>
   </li>
   <li>1. でダウンロード先として指定したディレクトリを選択する</li>
 </ol>
@@ -139,18 +163,34 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
 
 <ol>
   <li>URL バーの右側の「拡張機能のロゴ」を選択
-    <figure>
-      <img src="" alt="「拡張機能のロゴ」の場所">
-      <figcaption>図5: 「拡張機能のロゴ」の場所</figcaption>
-    </figure>
+    <table>
+      <tr align="center">
+        <td>
+          <img src="" alt="「拡張機能のロゴ」の場所">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          図5: 「拡張機能のロゴ」の場所
+        </td>
+      </tr>
+    </table>
   </li>
-  <li>表示された拡張機能のなかから、product00 をみつける</li>
+  <li>表示された拡張機能のなかから、<code>subliminal-certinfo</code> をみつける</li>
   <li>ピン留めのアイコンからピン留めする</li>
   <li>「拡張機能のロゴ」の左側に 図6 のようなアイコンが表示される
-    <figure>
-      <img src="" alt="product00 のアイコン">
-      <figcaption>図6: product00 のアイコン</figcaption>
-    </figure>
+    <table>
+      <tr align="center">
+        <td>
+          <img src="" alt="subliminal-certinfo のアイコン">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          図6: <code>subliminal-certinfo</code> のアイコン
+        </td>
+      </tr>
+    </table>
   </li>
 </ol>
 
@@ -160,20 +200,36 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
 
 <ol>
   <li>サイトアクセス時に左上に表示される「サイトを提供している組織の名前」を確認する（図7）
-    <figure>
-      <img src="" alt="GitHub にアクセスしたときの画面表示">
-      <figcaption>図7: GitHub にアクセスしたときの画面表示</figcaption>
-    </figure>
+    <table>
+      <tr align="center">
+        <td>
+          <img src="" alt="GitHub にアクセスしたときの画面表示">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          図7: GitHub にアクセスしたときの画面表示
+        </td>
+      </tr>
+    </table>
   </li>
   <li>ポップアップを表示して、
     <ul>
       <li>「サイトを提供している組織の名前」を確認する（図8）</li>
       <li>アクセスしているサイトについての各種脅威情報サイトへのリンクから、サイトの危険性を調べる（図8）</li>
     </ul>
-    <figure>
-      <img src="" alt="GitHub にアクセスしたあとに表示したポップアップ">
-      <figcaption>図8: GitHub にアクセスしたあとに表示したポップアップ</figcaption>
-    </figure>
+    <table>
+      <tr align="center">
+        <td>
+          <img src="" alt="GitHub にアクセスしたあとに表示したポップアップ">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          図8: GitHub にアクセスしたあとに表示したポップアップ
+        </td>
+      </tr>
+    </table>
   </li>
 </ol>
 
