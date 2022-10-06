@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Subliminal CertInfo",
+  "name": "subliminal-certinfo",
   "version": "1.0.0",
   "description": "when you access a site, you can check the site's credibility through temporarily displayed organization name which is described in the SSL certificate and on-demand popup.",
   "content_scripts": [
