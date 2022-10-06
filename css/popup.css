@@ -1,0 +1,12 @@
+﻿#body-wrapper {
+  background-color: ghostwhite;
+  width: 400px;
+  height: 250px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.threat-info-site-link {
+  background-color: ghostwhite;
+}
