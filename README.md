@@ -137,7 +137,7 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
   <li>Subliminal CertInfo をダウンロードする
     <ul>
       <li><code>git clone git@github.com:jinkaiNitamago2022/subliminal-certinfo.git</code></li>
-      <li><a href="">main ブランチの zip ファイル</a> をダウンロードする（リンクにアクセスするとダウンロードが始まります）</li>
+      <li><a href="https://github.com/jinkaiNitamago2022/subliminal-certinfo/archive/refs/heads/main.zip">main ブランチの zip ファイル</a> をダウンロードする（リンクにアクセスするとダウンロードが始まります）</li>
     </ul>
   </li>
   <li><a href="chrome://extensions">chrome://extensions</a> にアクセスする</li>
