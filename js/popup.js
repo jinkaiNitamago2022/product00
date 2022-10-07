@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async(event) => {
 
     var theme = '';
     document.getElementById('ssl-organization').innerHTML = storageCache.organization;
-    if (typeof storageCache.organization === 'undefined') {
+    if (storageCache.organization === 'disabled') {
         theme = 'disabled';
         storageCache.virusTotalUrlLink = '#';
         storageCache.virusTotalDomainLink = '#';
