@@ -37,7 +37,7 @@ SSL 証明書を取得した組織を明示する Chrome 拡張機能
   </tr>
 </table>
 
-アイコンは、AI (Stable Diffusion) を使って作成
+アイコンは AI (Stable Diffusion) を使って作成
 
 ## 目次
 
@@ -64,11 +64,11 @@ SSL 証明書を取得した組織を明示する Chrome 拡張機能
 | ![2021 年のフィッシングサイトにおける HTTPS の割合](./img/phishing-https-rate-2021.png) |
 | 図1: 2021 年のフィッシングサイトにおける HTTPS の割合（JPCERT 公開データより作成）|
 
-図1 は JPCERT が公開している 2021 年に見つかったフィッシングサイトの HTTP と HTTPS の割合だ。2021 年を通して見つかったフィッシングサイトのうち、80 % 以上のフィッシングサイトで HTTPS 通信ができたことがわかる。このことから、「フィッシングサイトは HTTPS 通信ができないから、HTTPS かどうかを見ていれば安全だろう」という考え方は危険だといえる。
+図1 は JPCERT が公開している 2021 年に見つかったフィッシングサイトの HTTP と HTTPS の割合だ。2021 年を通して見つかったフィッシングサイトのうち、80% 以上のフィッシングサイトで HTTPS 通信ができたことがわかる。このことから、「フィッシングサイトは HTTPS 通信ができないから、HTTPS かどうかを見ていれば安全だろう」という考え方は危険だといえる。
 
 ## 提案
 
-HTTPS 通信を可能にする SSL 証明書のなかでも OV, EV 証明書をユーザの目に見えるかたちで活用する
+HTTPS 通信をおこなうときに必要な SSL 証明書のなかでも OV, EV 証明書をユーザの目に見えるかたちで活用する。
 - OV, EV 証明書に記載された組織の名前をゼロステップで表示させる
   - OV, EV 証明書を取得している組織には一定レベル以上の信頼性がある
 - ユーザの目に入る位置に自動で表示させることで、組織名を確認することの習慣化を狙う
@@ -134,10 +134,10 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
 ## インストール方法
 
 <ol>
-  <li>product00 をダウンロードする
+  <li>Subliminal CertInfo をダウンロードする
     <ul>
-      <li><code>git clone git@github.com:jinkaiNitamago2022/product00.git</code></li>
-      <li><a href="https://github.com/jinkaiNitamago2022/product00/archive/refs/heads/main.zip">main ブランチの zip ファイル</a> をダウンロードする（リンクにアクセスするとダウンロードが始まります）</li>
+      <li><code>git clone git@github.com:jinkaiNitamago2022/subliminal-certinfo.git</code></li>
+      <li><a href="">main ブランチの zip ファイル</a> をダウンロードする（リンクにアクセスするとダウンロードが始まります）</li>
     </ul>
   </li>
   <li><a href="chrome://extensions">chrome://extensions</a> にアクセスする</li>
@@ -150,7 +150,7 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
       </tr>
       <tr align="center">
         <td>
-          図2: 「デベロッパーモード」のオン・オフを選択する場所
+          図2: 「デベロッパーモード」のオン・オフを選択する場所（図では「オン」になっている）
         </td>
       </tr>
     </table>
@@ -214,7 +214,7 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
 主な使い方は次の 2 通り
 
 <ol>
-  <li>サイトアクセス時に左上に表示される「サイトを提供している組織の名前」を確認する（図6, 図7）
+  <li>サイトアクセス時に左上に表示される「サイトを提供している組織の名前」を確認する（図6, 図7）。このとき、図7 のように表示された場合は組織名を確認できなかったことを意味をするため、個人情報などを入力する前にサイトの信頼性を確認することを勧める。調べる際にはポップアップのリンクを活用できる（詳しくは 2. で説明）。
     <table>
       <tr align="center">
         <td>
@@ -269,12 +269,14 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
 
 ## プライバシー
 
-この Chrome 拡張機能は、アクセスしているサイトの SSL 証明書を調べるために、次の場合にサイトのドメインを外部に用意したサーバに送信します。
-- アクセスしているサイトのドメインが変わったとき
-- タブが変わったとき
+- この Chrome 拡張機能は、アクセスしているサイトの SSL 証明書を調べるために、次の場合にサイトのドメインを外部に用意したサーバに送信します。
+  - アクセスしているサイトのドメインが変わったとき
+  - タブが変わったとき
+- ドメインとはたとえば、`https://github.com/jinkaiNitamago2022/subliminal-certinfo` では、`github.com` を指します。
+- 私たちは送信されたドメインの再利用をおこないません。
 
 ## 参考資料
 
 - JPCERT, Phishing URL dataset from JPCERT/CC, 2022/08/12, https://github.com/JPCERTCC/phishurl-list/, 2022/10/02
-- digicert, DV、OV、EVの 各 SSL 証明書の 違いとは？, "-", https://www.digicert.com/jp/difference-between-dv-ov-and-ev-ssl-certificates, 2022/10/02
+- digicert, DV、OV、EVの 各 SSL 証明書の違いとは？, "-", https://www.digicert.com/jp/difference-between-dv-ov-and-ev-ssl-certificates, 2022/10/02
 - SAKURA internet, 改めて知ろう、SSLサーバー証明書とは？（第二回）, 2019/06/13, https://knowledge.sakura.ad.jp/2988/, 2022/10/02
