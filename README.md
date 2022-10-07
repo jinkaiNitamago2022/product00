@@ -2,6 +2,41 @@
 
 SSL 証明書を取得した組織を明示する Chrome 拡張機能
 
+<table>
+  <th>
+    <td>Icon</td>
+    <td>us</td>
+  </th>
+  <tr>
+    <td rowspan="5" align="center">
+      <img src="./icons/icon128.png" alt="Subliminal CertInfo のアイコン">
+    </td>
+    <td>
+      <a href="https://github.com/t-star08">t-star08</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/R4nSC">R4nSC</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/suzuki307">suzuki307</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/nRun-sm">nRun-sm</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/sumeshi">sumeshi</a>
+    </td>
+  </tr>
+</table>
+
 ## 目次
 
 - [Subliminal CertInfo](#subliminal-certinfo)
