@@ -3,10 +3,10 @@
 SSL 証明書を取得した組織を明示する Chrome 拡張機能
 
 <table>
-  <th>
-    <td>Icon</td>
-    <td>us</td>
-  </th>
+  <tr>
+    <th>Icon</th>
+    <th>us</th>
+  </tr>
   <tr>
     <td rowspan="5" align="center">
       <img src="./icons/icon128.png" alt="Subliminal CertInfo のアイコン">
@@ -36,6 +36,8 @@ SSL 証明書を取得した組織を明示する Chrome 拡張機能
     </td>
   </tr>
 </table>
+
+アイコンは、AI (Stable Diffusion) を使って作成
 
 ## 目次
 
