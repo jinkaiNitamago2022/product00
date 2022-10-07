@@ -91,16 +91,7 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
       <li>組織名を確認できない場合、注意を喚起する</li>
     </ul>
   </li>
-  <li>ポップアップを通して、
-    <ul>
-      <li>アクセスしているサイトの OV, EV 証明書に記載された組織名を表示する
-        <ul>
-          <li>組織名を確認できない場合、注意を喚起する</li>
-        </ul>
-      </li>
-      <li>アクセスしているサイトについて、各種脅威情報サイトへのリンクを生成して提示する</li>
-    </ul>
-  </li>
+  <li>アクセスしているサイトについて、各種脅威情報サイトへのリンクを提示する</li>
 </ul>
 
 ## インストール方法
@@ -112,44 +103,31 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
       <li><a href="https://github.com/jinkaiNitamago2022/product00/archive/refs/heads/main.zip">main ブランチの zip ファイル</a> をダウンロードする（リンクにアクセスするとダウンロードが始まります）</li>
     </ul>
   </li>
-  <li><a href="chrome://extensions">chrome://extensions</a> にアクセスする（図2）<br>
+  <li><a href="chrome://extensions">chrome://extensions</a> にアクセスする</li>
+  <li>右上の「デベロッパーモード」をオンにする（図2）
     <table>
       <tr align="center">
         <td>
-          <img src="" alt="chrome://extensions の画面">
+          <img src="./img/where-dev-mode-switch.png" alt="「デベロッパーモード」のオン・オフを選択する場所">
         </td>
       </tr>
       <tr align="center">
         <td>
-          図2: chrome://extensions の画面
+          図2: 「デベロッパーモード」のオン・オフを選択する場所
         </td>
       </tr>
     </table>
   </li>
-  <li>右上の「デベロッパーモード」をオンにする（図3）
+  <li>「パッケージ化されていない拡張機能を読み込む」を選択する（図3）
     <table>
       <tr align="center">
         <td>
-          <img src="" alt="「デベロッパーモード」のオン・オフを選択する場所">
+          <img src="./img/where-load-unpkged-extension-btn.png" alt="「パッケージ化されていない拡張機能を読み込む」を選択する場所">
         </td>
       </tr>
       <tr align="center">
         <td>
-          図3: 「デベロッパーモード」のオン・オフを選択する場所
-        </td>
-      </tr>
-    </table>
-  </li>
-  <li>「パッケージ化されていない拡張機能を読み込む」を選択する（図4）
-    <table>
-      <tr align="center">
-        <td>
-          <img src="" alt="「パッケージ化されていない拡張機能を読み込む」を選択する場所">
-        </td>
-      </tr>
-      <tr align="center">
-        <td>
-          図4: 「パッケージ化されていない拡張機能を読み込む」を選択する場所
+          図3: 「パッケージ化されていない拡張機能を読み込む」を選択する場所
         </td>
       </tr>
     </table>
@@ -162,32 +140,32 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
 拡張機能をピン留めすることで、簡単にポップアップを表示することができる
 
 <ol>
-  <li>URL バーの右側の「拡張機能のロゴ」を選択
+  <li>URL バーの右側の「拡張機能のロゴ」を選択（図4）
     <table>
       <tr align="center">
         <td>
-          <img src="" alt="「拡張機能のロゴ」の場所">
+          <img src="./img/where-extension-logo.png" alt="「拡張機能のロゴ」の場所" style="max-width: 100%;">
         </td>
       </tr>
       <tr align="center">
         <td>
-          図5: 「拡張機能のロゴ」の場所
+          図4: 「拡張機能のロゴ」の場所（緑色の丸で囲まれたロゴ）
         </td>
       </tr>
     </table>
   </li>
   <li>表示された拡張機能のなかから、<code>subliminal-certinfo</code> をみつける</li>
   <li>ピン留めのアイコンからピン留めする</li>
-  <li>「拡張機能のロゴ」の左側に 図6 のようなアイコンが表示される
+  <li>「拡張機能のロゴ」の左側に 図5 のようなアイコンが表示される
     <table>
       <tr align="center">
         <td>
-          <img src="" alt="subliminal-certinfo のアイコン">
+          <img src="./icons/icon128.png" alt="subliminal-certinfo のアイコン">
         </td>
       </tr>
       <tr align="center">
         <td>
-          図6: <code>subliminal-certinfo</code> のアイコン
+          図5: <code>subliminal-certinfo</code> のアイコン
         </td>
       </tr>
     </table>
@@ -199,34 +177,53 @@ HTTPS 通信を可能にする SSL 証明書には主に次の 3 種類がある
 主な使い方は次の 2 通り
 
 <ol>
-  <li>サイトアクセス時に左上に表示される「サイトを提供している組織の名前」を確認する（図7）
+  <li>サイトアクセス時に左上に表示される「サイトを提供している組織の名前」を確認する（図6, 図7）
     <table>
       <tr align="center">
         <td>
-          <img src="" alt="GitHub にアクセスしたときの画面表示">
+          <img src="./img/display-when-confirm-org.png" alt="組織の名前を確認できたときの画面表示">
         </td>
       </tr>
       <tr align="center">
         <td>
-          図7: GitHub にアクセスしたときの画面表示
+          図6: 組織の名前を確認できたときの画面表示
         </td>
       </tr>
+      <tr align="center">
+        <td>
+          <img src="./img/display-when-cannot-confirm-org.png" alt="組織の名前を確認できなかったときの画面表示">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          図7: 組織名を確認できなかったときの画面表示
+        </td>
     </table>
   </li>
   <li>ポップアップを表示して、
     <ul>
-      <li>「サイトを提供している組織の名前」を確認する（図8）</li>
-      <li>アクセスしているサイトについての各種脅威情報サイトへのリンクから、サイトの危険性を調べる（図8）</li>
+      <li>「サイトを提供している組織の名前」を確認する（図8, 図9）</li>
+      <li>アクセスしているサイトについての各種脅威情報サイトへのリンクから、サイトの危険性を調べる（図8, 図9）</li>
     </ul>
     <table>
       <tr align="center">
         <td>
-          <img src="" alt="GitHub にアクセスしたあとに表示したポップアップ">
+          <img src="./img/popup-when-confirm-org.png" alt="組織の名前を確認できたあとに表示したポップアップ">
         </td>
       </tr>
       <tr align="center">
         <td>
-          図8: GitHub にアクセスしたあとに表示したポップアップ
+          図8: 組織の名前を確認できたあとに表示したポップアップ
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          <img src="./img/popup-when-cannot-confirm-org.png" alt="組織の名前を確認できたあとに表示したポップアップ">
+        </td>
+      </tr>
+      <tr align="center">
+        <td>
+          図9: 組織の名前を確認できたあとに表示したポップアップ
         </td>
       </tr>
     </table>
