@@ -17,31 +17,37 @@ export async function updateTab(tab) {
                 return [j.message.subject.CN, j.message.subject.O];
             } catch (err) {
                 if (err instanceof TypeError) {
-                    console.log("hi");
                     return [undefined, undefined];
                 } else {
                     console.log(err);
                 }
             }
         }
-    )
+    ).then((res) => {
+        return res.map((val) => {
+            return typeof val !== 'undefined' ? val : 'Unknown';
+        });
+    })
+    .catch ((err) => {
+        return ['disabled', 'disabled'];
+    });
 
     var [virusTotalUrlLink, virusTotalDomainLink, digicertLink] = await links.generateAllLinks(url.getCurrentTabUrl(tab));
 
-    // undefinedが保存できないから"unknown"で置き換えるロジックを追加
     await chrome.storage.session.set(
         {
             'tab': tab,
-            'commonName': typeof commonName !== 'undefined' ? commonName : 'Unknown',
-            'organization': typeof organization !== 'undefined' ? organization : 'Unknown',
+            'commonName': commonName,
+            'organization': organization,
             'virusTotalUrlLink': virusTotalUrlLink,
             'virusTotalDomainLink': virusTotalDomainLink,
             'digicertLink': digicertLink
         }
     );
 
-    console.log('commonName: ' + commonName);
-    console.log('Organization: ' + organization);
+    if (commonName === 'disabled' && organization === 'disabled') {
+        return;
+    }
 
     // 今回取得した証明書情報
     let sendCertInfo = {};

@@ -3,7 +3,7 @@ import * as urlMod from './url.js'
 export async function getCertInfo(url='', callback=async() => {}) {
     var [scheme, domain, _] = urlMod.breakUpUrl(url);
     if (scheme !== 'https') {
-        return;
+        throw new Error();
     }
 
     var api = 'https://jinkai-nitamago-cert.netlify.app/.netlify/functions/getcertinfo';
